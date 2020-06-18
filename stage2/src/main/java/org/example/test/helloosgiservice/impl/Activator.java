@@ -1,10 +1,9 @@
-package org.example.test;
+package org.example.test.helloosgiservice.impl;
 
 import org.example.test.helloosgiservice.Greeting;
-import org.example.test.helloosgiservice.impl.GreetingImpl;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
+
 
 public class Activator implements BundleActivator {
     private static BundleContext context;
@@ -21,8 +20,8 @@ public class Activator implements BundleActivator {
 
         this.registryMathService();
 
-        ServiceReference ref = context.getServiceReference(Greeting.class.getName());
-        ((Greeting) context.getService(ref)).sayHello();
+//        ServiceReference ref = context.getServiceReference(Greeting.class.getName());
+//        ((Greeting) context.getService(ref)).sayHello();
 
         System.out.println("OSGi HelloOSGiService Started");
 

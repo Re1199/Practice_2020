@@ -18,32 +18,81 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>service</id>
+            <properties>
+                <module>org.example.test.helloosgiservice</module>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <finalName>service</finalName>
+                            <instructions>
+                                <Bundle-SymbolicName>
+                                    ${project.groupId}.${project.artifactId}.${module}
+                                </Bundle-SymbolicName>
+                                <Bundle-Name>${project.name}.${module}</Bundle-Name>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+                                <Bundle-Activator>
+                                    ${module}.impl.Activator
+                                </Bundle-Activator>
+                                <Private-Package>
+                                    ${module}.impl
+                                </Private-Package>
+                                <Import-Package>
+                                    org.osgi.framework, ${module}
+                                </Import-Package>
+                                <Export-Package>
+                                    ${module}
+                                </Export-Package>
+                            </instructions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>client</id>
+            <properties>
+                <module>org.example.test.helloosgiclient</module>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <finalName>client</finalName>
+                            <instructions>
+                                <Bundle-SymbolicName>
+                                    ${project.groupId}.${project.artifactId}.${module}
+                                </Bundle-SymbolicName>
+                                <Bundle-Name>${project.name}.${module}</Bundle-Name>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+                                <Bundle-Activator>
+                                    ${module}.Client
+                                </Bundle-Activator>
+                                <Import-Package>
+                                    org.example.test.helloosgiservice, org.osgi.framework, ${module}
+                                </Import-Package>
+                                <Export-Package>
+                                    ${module}
+                                </Export-Package>
+                            </instructions>
 
-    <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>3.3.0</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <instructions>
-                            <Bundle-SymbolicName>
-                                ${project.groupId}.${project.artifactId}
-                            </Bundle-SymbolicName>
-                            <Bundle-Name>${project.name}</Bundle-Name>
-                            <Bundle-Version>${project.version}</Bundle-Version>
-                            <Bundle-Activator>
-                                org.example.test.Activator
-                            </Bundle-Activator>
-                            <Private-Package>
-                                org.example.test.helloosgiservice.impl
-                            </Private-Package>
-                        </instructions>
-                    </configuration>
-                </plugin>
-            </plugins>
-    </build>
-
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
