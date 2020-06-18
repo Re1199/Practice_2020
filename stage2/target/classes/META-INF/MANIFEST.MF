@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1592479880631
+Build-Jdk: 11.0.3
+Built-By: KharisovaRenata
+Bundle-Activator: org.example.test.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: untitled
+Bundle-SymbolicName: org.example.untitled
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.example.test;uses:="org.osgi.framework";version="1.0
+ .0.SNAPSHOT",org.example.test.helloosgiservice;version="1.0.0.SNAPSHOT"
+Import-Package: org.example.test.helloosgiservice,org.osgi.framework;ver
+ sion="[1.5,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-3.3.0.201609221906
