@@ -15,14 +15,8 @@ public class Activator implements BundleActivator {
 
     public void start(BundleContext ctx) {
         Activator.context = ctx;
-
         System.out.println("Registry Service HelloOSGiService ...");
-
         this.registryMathService();
-
-//        ServiceReference ref = context.getServiceReference(Greeting.class.getName());
-//        ((Greeting) context.getService(ref)).sayHello();
-
         System.out.println("OSGi HelloOSGiService Started");
 
     }
