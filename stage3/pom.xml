@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>untitled</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>bundle</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.gogo.runtime -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.gogo.runtime</artifactId>
+            <version>1.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.osgi/org.osgi.service.component.annotations -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
+            <version>1.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+            <version>1.12.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>service</id>
+            <properties>
+                <module>org.example.test.helloosgiservice</module>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <finalName>service</finalName>
+                            <instructions>
+                                <Bundle-SymbolicName>
+                                    ${project.groupId}.${project.artifactId}.${module}
+                                </Bundle-SymbolicName>
+                                <Bundle-Name>${project.name}.${module}</Bundle-Name>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+
+                                <Private-Package>
+                                    ${module}.impl
+                                </Private-Package>
+                                <Import-Package>
+                                    org.osgi.framework, ${module}
+                                </Import-Package>
+                                <Export-Package>
+                                    ${module}
+                                </Export-Package>
+                                <_dsannotations>*</_dsannotations>
+                                <!-- Enable processing of OSGI metatype annotations -->
+                                <_metatypeannotations>*</_metatypeannotations>
+                            </instructions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>client</id>
+            <properties>
+                <module>org.example.test.helloosgiclient</module>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <finalName>client</finalName>
+                            <instructions>
+                                <Bundle-SymbolicName>
+                                    ${project.groupId}.${project.artifactId}.${module}
+                                </Bundle-SymbolicName>
+                                <Bundle-Name>${project.name}.${module}</Bundle-Name>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+
+                                <Import-Package>
+                                    org.example.test.helloosgiservice, org.osgi.framework, ${module}
+                                </Import-Package>
+                                <Export-Package>
+                                    ${module}
+                                </Export-Package>
+                                <_dsannotations>*</_dsannotations>
+                                <!-- Enable processing of OSGI metatype annotations -->
+                                <_metatypeannotations>*</_metatypeannotations>
+                            </instructions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>command</id>
+            <properties>
+                <module>org.example.test.gogocommand</module>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.felix</groupId>
+                        <artifactId>maven-bundle-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <finalName>command</finalName>
+                            <instructions>
+                                <Bundle-SymbolicName>
+                                    ${project.groupId}.${project.artifactId}.${module}
+                                </Bundle-SymbolicName>
+                                <Bundle-Name>${project.name}.${module}</Bundle-Name>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+                                <Bundle-Activator>
+                                    ${module}.CommandActivator
+                                </Bundle-Activator>
+                                <Import-Package>
+                                    org.osgi.framework, ${module}
+                                </Import-Package>
+                                <Export-Package>
+                                    ${module}
+                                </Export-Package>
+                            </instructions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
