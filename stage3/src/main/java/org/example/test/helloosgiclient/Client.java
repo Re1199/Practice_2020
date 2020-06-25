@@ -6,24 +6,29 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.annotations.*;
 
-@Component
+@Component(
+        immediate = true
+)
 public class Client {
-    private BundleContext ctx;
+    private Greeting hello;
 
     @Reference(
             service = Greeting.class,
             cardinality = ReferenceCardinality.MANDATORY,
-            unbind = "unbinder"
+            policy = ReferencePolicy.STATIC,
+            unbind = "unsetGreeting"
     )
+    protected void setGreeter(Greeting hello) {
+       this.hello = hello;
+    }
 
     @Activate
     protected void onActivate() {
-        ServiceReference ref =
-                ctx.getServiceReference(Greeting.class.getName());
-        ((Greeting) ctx.getService(ref)).sayHello();
+        hello.sayHello();
+        System.out.println("Client activated");
     }
 
-    protected void unbinder() {
-        this.ctx = null;
+    protected void unsetGreeting() {
+        this.hello = null;
     }
 }
