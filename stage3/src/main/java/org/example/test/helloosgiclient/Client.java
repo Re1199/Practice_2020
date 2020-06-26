@@ -10,22 +10,18 @@ import org.osgi.service.component.annotations.*;
         immediate = true
 )
 public class Client {
-    private Greeting hello;
-
     @Reference(
             service = Greeting.class,
             cardinality = ReferenceCardinality.MANDATORY,
             policy = ReferencePolicy.STATIC,
             unbind = "unsetGreeting"
     )
-    protected void setGreeter(Greeting hello) {
-       this.hello = hello;
-    }
+    private Greeting hello;
 
     @Activate
     protected void onActivate() {
-        hello.sayHello();
         System.out.println("Client activated");
+        hello.sayHello();
     }
 
     protected void unsetGreeting() {
