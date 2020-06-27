@@ -23,7 +23,7 @@ public class AifImpl extends NewsPortalAbstract  implements NewsPortal{
     public List<String> getNewsTitles() {
         List<String> res = new ArrayList<>();
         try {
-            URL url = new URL("http://www.aif.ru/rss/news.php");
+            URL url = new URL("https://www.aif.ru/rss/news.php");
             URLConnection urlConnection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             Pattern p = Pattern.compile("<title><!\\[CDATA\\[(.*?)]]>");
@@ -31,7 +31,7 @@ public class AifImpl extends NewsPortalAbstract  implements NewsPortal{
                 Matcher matcher = p.matcher(line);
                 while (matcher.find()) {
                     String s = matcher.group();
-                    res.add(s.substring(16, s.length() - 1));
+                    res.add(s.substring(16, s.length() - 3));
                 }
             }
         } catch (Exception e) {

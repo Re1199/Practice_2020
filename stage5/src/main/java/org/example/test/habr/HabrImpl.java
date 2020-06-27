@@ -2,6 +2,7 @@ package org.example.test.habr;
 
 import org.example.test.newsportal.NewsPortal;
 import org.example.test.newsportal.impl.NewsPortalAbstract;
+import org.osgi.service.component.annotations.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,6 +13,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component(
+        service = NewsPortal.class,
+        immediate = true
+)
 public class HabrImpl extends NewsPortalAbstract implements NewsPortal {
     public String getNewsPortalName() {
         return "habr.com";
