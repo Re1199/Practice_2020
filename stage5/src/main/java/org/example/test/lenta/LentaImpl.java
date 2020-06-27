@@ -19,7 +19,7 @@ import java.net.URL;
 )
 public class LentaImpl extends NewsPortalAbstract implements NewsPortal{
     public String getNewsPortalName() {
-        return "Lenta.ru";
+        return "lenta.ru";
     }
 
     private static String readAll(Reader rd) throws IOException {
