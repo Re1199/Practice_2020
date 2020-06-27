@@ -16,7 +16,8 @@ public abstract class NewsPortalAbstract implements NewsPortal {
             String[] words = newsName.split("\\s+");
             for (String word : words) {
                 word = word.replaceAll("[^а-яА-Яa-zA-Z0-9\\-\\s]", "").toLowerCase();
-                wordMap.put(word, wordMap.containsKey(word) ? wordMap.get(word) + 1 : 1);
+                if (!word.equals(""))
+                    wordMap.put(word, wordMap.containsKey(word) ? wordMap.get(word) + 1 : 1);
             }
         }
         if (wordMap.size() <= 10) {

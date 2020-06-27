@@ -23,12 +23,17 @@ public class HabrImpl extends NewsPortalAbstract implements NewsPortal {
             URL url = new URL("https://habr.com/ru/rss/interesting/");
             URLConnection urlConnection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            Pattern p = Pattern.compile("<title><!\\[CDATA\\[(.*?)]");
+            Pattern pattern = Pattern.compile("<title><!\\[CDATA\\[(.*?)]]>");
             for (String line; (line = reader.readLine()) != null; ) {
-                Matcher m = p.matcher(line);
-                while (m.find()) {
-                    String s = m.group();
-                    res.add(s.substring(16, s.length() - 1));
+                Matcher matcher = pattern.matcher(line);
+                while (matcher.find()) {
+                    String s = matcher.group();
+                    s = s.substring(16, s.length() - 3);
+                    if (s.startsWith("[Из песочницы] "))
+                        s = s.substring(15);
+                    if (s.startsWith("[Перевод] "))
+                        s = s.substring(10);
+                    res.add(s);
                 }
             }
         } catch (Exception e) {

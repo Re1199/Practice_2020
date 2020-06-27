@@ -26,11 +26,11 @@ public class AifImpl extends NewsPortalAbstract  implements NewsPortal{
             URL url = new URL("http://www.aif.ru/rss/news.php");
             URLConnection urlConnection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            Pattern p = Pattern.compile("<title><!\\[CDATA\\[(.*?)]");
+            Pattern p = Pattern.compile("<title><!\\[CDATA\\[(.*?)]]>");
             for (String line; (line = reader.readLine()) != null; ) {
-                Matcher m = p.matcher(line);
-                while (m.find()) {
-                    String s = m.group();
+                Matcher matcher = p.matcher(line);
+                while (matcher.find()) {
+                    String s = matcher.group();
                     res.add(s.substring(16, s.length() - 1));
                 }
             }
