@@ -35,7 +35,8 @@ public class AifImpl extends NewsPortalAbstract  implements NewsPortal{
                 }
             }
         } catch (Exception e) {
-            System.err.println("Can't find url: " + e.getMessage());
+            System.err.println("Can't find url from aif");
+            System.err.println(e.getMessage());
         }
         return res;
     }

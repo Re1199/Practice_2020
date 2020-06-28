@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>untitled</artifactId>
+    <artifactId>teststat</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -81,7 +81,7 @@
                                     ${module}.impl
                                 </Private-Package>
                                 <Import-Package>
-                                    org.example.test.newsportal.NewsPortal, org.osgi.framework, ${module}
+                                    org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>*</Export-Package>
                                 <Service-Component>*</Service-Component>
@@ -94,6 +94,8 @@
                 </plugins>
             </build>
         </profile>
+
+
 
         <profile>
             <id>lenta</id>
@@ -115,11 +117,8 @@
                                 </Bundle-SymbolicName>
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
-                                <Private-Package>
-                                    ${module}.impl
-                                </Private-Package>
                                 <Import-Package>
-                                    org.osgi.framework, ${module}
+                                    org.example.test.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>
                                     ${module}
@@ -155,11 +154,8 @@
                                 </Bundle-SymbolicName>
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
-                                <Private-Package>
-                                    ${module}.impl
-                                </Private-Package>
                                 <Import-Package>
-                                    org.osgi.framework, ${module}
+                                    org.example.test.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>*</Export-Package>
                                 <Service-Component>*</Service-Component>
@@ -176,7 +172,7 @@
         <profile>
             <id>aif</id>
             <properties>
-                <module>org.example.test.lenta</module>
+                <module>org.example.test.aif</module>
             </properties>
             <build>
                 <plugins>
@@ -193,11 +189,8 @@
                                 </Bundle-SymbolicName>
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
-                                <Private-Package>
-                                    ${module}.impl
-                                </Private-Package>
                                 <Import-Package>
-                                    org.osgi.framework, ${module}
+                                    org.example.test.newsportal.NewsPortal, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>*</Export-Package>
                                 <Service-Component>*</Service-Component>
@@ -232,11 +225,11 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.osgi.framework, ${module}
+                                    org.example.test.newsportal, org.example.test.aif,
+                                    org.example.test.habr, org.example.test.lenta,
+                                    org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>
-                                    ${module}
-                                </Export-Package>
+                                <Export-Package>*</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->

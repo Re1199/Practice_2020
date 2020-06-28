@@ -42,7 +42,8 @@ public class HabrImpl extends NewsPortalAbstract implements NewsPortal {
                 }
             }
         } catch (Exception e) {
-            System.err.println("Can't find url: " + e.getMessage());
+            System.err.println("Can't find url from habr");
+            System.err.println(e.getMessage());
         }
         return res;
     }

@@ -1,5 +1,6 @@
 package org.example.test.newsstatcommand;
 
+import org.apache.felix.service.command.CommandProcessor;
 import org.example.test.newsportal.NewsPortal;
 
 import org.osgi.service.component.annotations.*;
@@ -7,22 +8,34 @@ import org.osgi.service.component.annotations.*;
 import java.util.*;
 
 @Component(
-        immediate = true
+        immediate = true,
+        property = {
+                CommandProcessor.COMMAND_SCOPE + ":String=news",
+                CommandProcessor.COMMAND_FUNCTION + ":String=stats"
+        }
 )
 public class NewsStatCommand {
-    @Reference(
-            service = NewsPortal.class,
-            cardinality = ReferenceCardinality.MULTIPLE,
-            policy = ReferencePolicy.DYNAMIC,
-            unbind = "unbinder"
-    )
     private NewsPortal newsPortal;
+
     private Map<String, NewsPortal> newsPortalMap = new HashMap<String, NewsPortal>();
 
+
+/*
     @Activate
     protected void onActivate() {
-        System.out.println(newsPortal.getNewsPortalName());
-        newsPortalMap.put(newsPortal.getNewsPortalName(), newsPortal);
+        System.out.println(this.newsPortal.getNewsPortalName());
+        newsPortalMap.put(this.newsPortal.getNewsPortalName(), this.newsPortal);
+    }
+*/
+
+    @Reference(
+            service = NewsPortal.class,
+            unbind = "unbinder"
+    )
+    public void binder(NewsPortal newsPortal) {
+        this.newsPortal = newsPortal;
+        System.out.println(this.newsPortal.getNewsPortalName());
+        newsPortalMap.put(this.newsPortal.getNewsPortalName(), this.newsPortal);
     }
 
     public void unbinder(NewsPortal mediaPortal) {

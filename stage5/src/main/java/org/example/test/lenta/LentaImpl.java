@@ -20,21 +20,21 @@ public class LentaImpl extends NewsPortalAbstract implements NewsPortal {
         return "lenta.ru";
     }
 
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
     private static JSONObject readJsonFromUrl() throws IOException, JSONException {
         try (InputStream is = new URL("https://api.lenta.ru/lists/latest").openStream()) {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            String jsonText = readAll(rd);
-            return new JSONObject(jsonText);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            String text = readAll(bufferedReader);
+            return new JSONObject(text);
         }
+    }
+
+    private static String readAll(Reader reader) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        int i;
+        while ((i = reader.read()) != -1) {
+            stringBuilder.append((char) i);
+        }
+        return stringBuilder.toString();
     }
 
     public List<String> getNewsTitles() {
@@ -42,15 +42,15 @@ public class LentaImpl extends NewsPortalAbstract implements NewsPortal {
         try {
             JSONArray array = readJsonFromUrl().getJSONArray("headlines");
             for (int i = 0; i < array.length(); i++) {
-                JSONObject o = array.getJSONObject(i);
-                if (o.get("type").equals("news")) {
-                    res.add((String) o.getJSONObject("info").get("title"));
+                JSONObject jsonObject = array.getJSONObject(i);
+                if (jsonObject.get("type").equals("news")) {
+                    res.add((String) jsonObject.getJSONObject("info").get("title"));
                 }
             }
         } catch (IOException e) {
-            System.err.println("Can't read news: " + e.getMessage());
+            System.err.println("Can't read news from lenta");
+            System.err.println(e.getMessage());
         }
         return res;
     }
-
 }
