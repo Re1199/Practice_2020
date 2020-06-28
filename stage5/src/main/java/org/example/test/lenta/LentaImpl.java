@@ -4,12 +4,10 @@ import org.example.test.newsportal.NewsPortal;
 import org.example.test.newsportal.impl.NewsPortalAbstract;
 
 import org.osgi.service.component.annotations.Component;
+import org.json.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-
-import org.json.*;
-
 import java.io.*;
 import java.net.URL;
 
@@ -17,7 +15,7 @@ import java.net.URL;
         service = NewsPortal.class,
         immediate = true
 )
-public class LentaImpl extends NewsPortalAbstract implements NewsPortal{
+public class LentaImpl extends NewsPortalAbstract implements NewsPortal {
     public String getNewsPortalName() {
         return "lenta.ru";
     }

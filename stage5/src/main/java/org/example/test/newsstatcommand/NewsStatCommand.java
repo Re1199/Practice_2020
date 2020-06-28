@@ -31,8 +31,8 @@ public class NewsStatCommand {
     }
 
     public void stats() {
-        System.out.println("Expected \"news:stats <media_name>\"");
-        System.out.println("<media_name> can be: " + String.join(", ", newsPortalMap.keySet()));
+        System.out.println("Correct news:stats <news_portal_name>");
+        System.out.println("<news_portal_name>: " + String.join(", ", newsPortalMap.keySet()));
     }
 
     public void stats(String mediaName) {
