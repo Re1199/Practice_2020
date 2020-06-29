@@ -8,6 +8,7 @@ import org.osgi.service.component.annotations.*;
 import java.util.*;
 
 @Component(
+        service = NewsStatCommand.class,
         immediate = true,
         property = {
                 CommandProcessor.COMMAND_SCOPE + ":String=news",
@@ -15,23 +16,20 @@ import java.util.*;
         }
 )
 public class NewsStatCommand {
+    private NewsPortal newsPortal;
+    private Map<String, NewsPortal> newsPortalMap = new HashMap<String, NewsPortal>();
+
     @Reference(
             service = NewsPortal.class,
-            cardinality = ReferenceCardinality.MULTIPLE,
             policy = ReferencePolicy.DYNAMIC,
             bind = "binder",
             unbind = "unbinder"
     )
-    private NewsPortal newsPortal;
-    private Map<String, NewsPortal> newsPortalMap = new HashMap<String, NewsPortal>();
-
-
     protected void binder(NewsPortal newsPortal) {
         this.newsPortal = newsPortal;
         System.out.println(newsPortal.getNewsPortalName());
         newsPortalMap.put(newsPortal.getNewsPortalName(), newsPortal);
     }
-
 
     public void unbinder(NewsPortal mediaPortal) {
         System.out.println("Unbind " + mediaPortal.getNewsPortalName());
@@ -39,15 +37,13 @@ public class NewsStatCommand {
     }
 
     public void stats() {
-        System.out.println("Correct news:stats <news_portal_name>");
-        System.out.println("<news_portal_name>: " + String.join(", ", newsPortalMap.keySet()));
+        System.out.println("Please, choose news portal");
+        System.out.println("news_portal_names: " + String.join(", ", newsPortalMap.keySet()));
     }
 
     public void stats(String mediaName) {
         if (newsPortalMap.containsKey(mediaName)) {
             System.out.println(newsPortalMap.get(mediaName).getTopWords());
-        } else {
-            System.out.println("<media_name> can be: " + String.join(", ", newsPortalMap.keySet()));
         }
     }
 }
