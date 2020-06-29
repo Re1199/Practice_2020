@@ -2,7 +2,6 @@ package org.example.test.newsstatcommand;
 
 import org.apache.felix.service.command.CommandProcessor;
 import org.example.test.newsportal.NewsPortal;
-
 import org.osgi.service.component.annotations.*;
 
 import java.util.*;
@@ -38,12 +37,15 @@ public class NewsStatCommand {
 
     public void stats() {
         System.out.println("Please, choose news portal");
-        System.out.println("news_portal_names: " + String.join(", ", newsPortalMap.keySet()));
+        System.out.println("News portal names: " + String.join(", ", newsPortalMap.keySet()));
     }
 
     public void stats(String mediaName) {
         if (newsPortalMap.containsKey(mediaName)) {
             System.out.println(newsPortalMap.get(mediaName).getTopWords());
+        } else {
+            System.out.println("Error! News portal names can be: " +
+                    String.join(", ", newsPortalMap.keySet()));
         }
     }
 }
