@@ -6,10 +6,6 @@ import org.osgi.service.component.annotations.Component;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component(
-        service=NewsPortal.class,
-        immediate = true
-)
 public abstract class NewsPortalAbstract implements NewsPortal {
     public List<String> getTopWords()  {
         List<String> newsNames = this.getNewsTitles();

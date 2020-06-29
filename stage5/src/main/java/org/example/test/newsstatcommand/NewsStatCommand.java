@@ -15,28 +15,23 @@ import java.util.*;
         }
 )
 public class NewsStatCommand {
+    @Reference(
+            service = NewsPortal.class,
+            cardinality = ReferenceCardinality.MULTIPLE,
+            policy = ReferencePolicy.DYNAMIC,
+            bind = "binder",
+            unbind = "unbinder"
+    )
     private NewsPortal newsPortal;
-
     private Map<String, NewsPortal> newsPortalMap = new HashMap<String, NewsPortal>();
 
 
-/*
-    @Activate
-    protected void onActivate() {
-        System.out.println(this.newsPortal.getNewsPortalName());
-        newsPortalMap.put(this.newsPortal.getNewsPortalName(), this.newsPortal);
-    }
-*/
-
-    @Reference(
-            service = NewsPortal.class,
-            unbind = "unbinder"
-    )
-    public void binder(NewsPortal newsPortal) {
+    protected void binder(NewsPortal newsPortal) {
         this.newsPortal = newsPortal;
-        System.out.println(this.newsPortal.getNewsPortalName());
-        newsPortalMap.put(this.newsPortal.getNewsPortalName(), this.newsPortal);
+        System.out.println(newsPortal.getNewsPortalName());
+        newsPortalMap.put(newsPortal.getNewsPortalName(), newsPortal);
     }
+
 
     public void unbinder(NewsPortal mediaPortal) {
         System.out.println("Unbind " + mediaPortal.getNewsPortalName());

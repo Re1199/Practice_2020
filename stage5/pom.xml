@@ -83,7 +83,7 @@
                                 <Import-Package>
                                     org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>*</Export-Package>
+                                <Export-Package>org.example.test.newsportal</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -118,11 +118,9 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.osgi.framework, ${module}
+                                    org.example.test.newsportal, org.json, org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>
-                                    ${module}
-                                </Export-Package>
+                                <Export-Package>org.example.test.lenta</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -157,7 +155,7 @@
                                 <Import-Package>
                                     org.example.test.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>*</Export-Package>
+                                <Export-Package>org.example.test.habr</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -190,9 +188,9 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal.NewsPortal, org.osgi.framework, ${module}
+                                    org.example.test.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>*</Export-Package>
+                                <Export-Package>${module}</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -205,7 +203,7 @@
         </profile>
 
         <profile>
-            <id>command</id>
+            <id>statcommand</id>
             <properties>
                 <module>org.example.test.newsstatcommand</module>
             </properties>
@@ -217,7 +215,7 @@
                         <version>3.3.0</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <finalName>command</finalName>
+                            <finalName>statcommand</finalName>
                             <instructions>
                                 <Bundle-SymbolicName>
                                     ${project.groupId}.${project.artifactId}.${module}
@@ -225,11 +223,10 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.example.test.aif,
-                                    org.example.test.habr, org.example.test.lenta,
+                                    org.example.test.newsportal,
                                     org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>*</Export-Package>
+                                <Export-Package>${module}</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
