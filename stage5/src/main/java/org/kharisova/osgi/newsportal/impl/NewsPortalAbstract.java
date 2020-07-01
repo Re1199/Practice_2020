@@ -1,15 +1,17 @@
-package org.example.test.newsportal.impl;
+package org.kharisova.osgi.newsportal.impl;
 
-import org.example.test.newsportal.NewsPortal;
-import org.osgi.service.component.annotations.Component;
+import org.kharisova.osgi.newsportal.NewsPortal;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class NewsPortalAbstract implements NewsPortal {
-    public List<String> getTopWords()  {
+    static final int NUM_WORDS = 10;
+
+
+    public List<String> getTopWords() {
         List<String> newsNames = this.getNewsTitles();
-        return findKMostFrequentWords(newsNames, 10);
+        return findKMostFrequentWords(newsNames, NUM_WORDS);
     }
 
     private List<String> findKMostFrequentWords(List<String> titles, int k) {

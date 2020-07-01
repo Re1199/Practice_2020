@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>org.kharisova</groupId>
     <artifactId>teststat</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
@@ -60,7 +60,8 @@
         <profile>
             <id>newsportal</id>
             <properties>
-                <module>org.example.test.newsportal</module>
+                <module>org.kharisova.osgi.newsportal</module>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             </properties>
             <build>
                 <plugins>
@@ -83,7 +84,7 @@
                                 <Import-Package>
                                     org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>org.example.test.newsportal</Export-Package>
+                                <Export-Package>${module}</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -100,7 +101,8 @@
         <profile>
             <id>lenta</id>
             <properties>
-                <module>org.example.test.lenta</module>
+                <module>org.kharisova.osgi.lenta</module>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             </properties>
             <build>
                 <plugins>
@@ -118,9 +120,9 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.json, org.osgi.framework, ${module}
+                                    org.kharisova.osgi.newsportal, org.json, org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>org.example.test.lenta</Export-Package>
+                                <Export-Package>org.kharisova.osgi.lenta</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -135,7 +137,8 @@
         <profile>
             <id>habr</id>
             <properties>
-                <module>org.example.test.habr</module>
+                <module>org.kharisova.osgi.habr</module>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             </properties>
             <build>
                 <plugins>
@@ -153,9 +156,9 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.osgi.framework, ${module}
+                                    org.kharisova.osgi.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
-                                <Export-Package>org.example.test.habr</Export-Package>
+                                <Export-Package>org.kharisova.osgi.habr</Export-Package>
                                 <Service-Component>*</Service-Component>
                                 <_dsannotations>*</_dsannotations>
                                 <!-- Enable processing of OSGI metatype annotations -->
@@ -170,7 +173,8 @@
         <profile>
             <id>aif</id>
             <properties>
-                <module>org.example.test.aif</module>
+                <module>org.kharisova.osgi.aif</module>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             </properties>
             <build>
                 <plugins>
@@ -188,7 +192,7 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal, org.osgi.framework, ${module}
+                                    org.kharisova.osgi.newsportal, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>${module}</Export-Package>
                                 <Service-Component>*</Service-Component>
@@ -205,7 +209,8 @@
         <profile>
             <id>statcommand</id>
             <properties>
-                <module>org.example.test.newsstatcommand</module>
+                <module>org.kharisova.osgi.newsstatcommand</module>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             </properties>
             <build>
                 <plugins>
@@ -223,7 +228,7 @@
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
                                 <Import-Package>
-                                    org.example.test.newsportal,
+                                    org.kharisova.osgi.newsportal,
                                     org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>${module}</Export-Package>

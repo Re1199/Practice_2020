@@ -1,4 +1,4 @@
-package org.example.test.newsportal;
+package org.kharisova.osgi.newsportal;
 
 import java.util.List;
 

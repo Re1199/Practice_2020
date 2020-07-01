@@ -1,10 +1,12 @@
-package org.example.test.newsstatcommand;
+package org.kharisova.osgi.newsstatcommand;
 
 import org.apache.felix.service.command.CommandProcessor;
-import org.example.test.newsportal.NewsPortal;
+import org.kharisova.osgi.newsportal.NewsPortal;
 import org.osgi.service.component.annotations.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
+
 
 @Component(
         service = NewsStatCommand.class,
@@ -17,6 +19,7 @@ import java.util.*;
 public class NewsStatCommand {
     private NewsPortal newsPortal;
     private Map<String, NewsPortal> newsPortalMap = new HashMap<String, NewsPortal>();
+
 
     @Reference(
             service = NewsPortal.class,
@@ -42,10 +45,17 @@ public class NewsStatCommand {
 
     public void stats(String mediaName) {
         if (newsPortalMap.containsKey(mediaName)) {
-            System.out.println(newsPortalMap.get(mediaName).getTopWords());
+            String s = newsPortalMap.get(mediaName).getTopWords().toString();
+            try {
+                byte[] b = s.getBytes("UTF-8");
+                s = new String(b, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+            }
+            System.out.println(s);
         } else {
             System.out.println("Error! News portal names can be: " +
                     String.join(", ", newsPortalMap.keySet()));
         }
     }
 }
+

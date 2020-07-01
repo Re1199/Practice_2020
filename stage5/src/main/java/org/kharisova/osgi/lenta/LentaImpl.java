@@ -1,7 +1,7 @@
-package org.example.test.lenta;
+package org.kharisova.osgi.lenta;
 
-import org.example.test.newsportal.NewsPortal;
-import org.example.test.newsportal.impl.NewsPortalAbstract;
+import org.kharisova.osgi.newsportal.NewsPortal;
+import org.kharisova.osgi.newsportal.impl.NewsPortalAbstract;
 
 import org.osgi.service.component.annotations.Component;
 import org.json.*;
@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.io.*;
 import java.net.URL;
+
 
 @Component(
         service = NewsPortal.class,
