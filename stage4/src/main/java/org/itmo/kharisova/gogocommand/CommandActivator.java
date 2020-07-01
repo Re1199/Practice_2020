@@ -1,4 +1,4 @@
-package org.example.test.gogocommand;
+package org.itmo.kharisova.gogocommand;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -30,5 +30,4 @@ public class CommandActivator implements BundleActivator {
         CommandActivator.context = null;
         System.out.println("New command hello bundle stopped!");
     }
-
 }

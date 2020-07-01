@@ -1,6 +1,6 @@
-package org.example.test.helloosgiservice.impl;
+package org.itmo.kharisova.helloosgiservice.impl;
 
-import org.example.test.helloosgiservice.Greeting;
+import org.itmo.kharisova.helloosgiservice.Greeting;
 
 public class GreetingImpl implements Greeting {
     final String mName;

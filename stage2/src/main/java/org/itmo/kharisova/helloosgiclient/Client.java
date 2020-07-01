@@ -1,6 +1,6 @@
-package org.example.test.helloosgiclient;
+package org.itmo.kharisova.helloosgiclient;
 
-import org.example.test.helloosgiservice.Greeting;
+import org.itmo.kharisova.helloosgiservice.Greeting;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;

@@ -1,6 +1,6 @@
-package org.example.test.helloosgiservice.impl;
+package org.itmo.kharisova.helloosgiservice.impl;
 
-import org.example.test.helloosgiservice.Greeting;
+import org.itmo.kharisova.helloosgiservice.Greeting;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -11,7 +11,6 @@ public class Activator implements BundleActivator {
     static BundleContext getContext() {
         return context;
     }
-
 
     public void start(BundleContext ctx) {
         Activator.context = ctx;

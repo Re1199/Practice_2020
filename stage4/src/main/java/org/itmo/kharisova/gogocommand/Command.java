@@ -1,4 +1,4 @@
-package org.example.test.gogocommand;
+package org.itmo.kharisova.gogocommand;
 
 import org.apache.felix.service.command.Parameter;
 import org.osgi.framework.BundleContext;
@@ -17,15 +17,4 @@ public class Command {
     public void hello(String param) {
         System.out.println("Hello, " + param + "!");
     }
-
-    /*
-    public String option(
-            @Parameter(
-                    absentValue="World",
-                    names={"-p","--parameter"})
-                    String parameter
-    ) {
-        return "Hello " + parameter;
-    }
-    */
 }

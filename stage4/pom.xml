@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>untitled</artifactId>
+    <groupId>org.itmo.kharisova</groupId>
+    <artifactId>newcommand</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>bundle</packaging>
@@ -39,7 +39,7 @@
         <profile>
             <id>command</id>
             <properties>
-                <module>org.example.test.gogocommand</module>
+                <module>org.itmo.kharisova.gogocommand</module>
             </properties>
             <build>
                 <plugins>

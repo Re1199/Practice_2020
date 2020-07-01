@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>org.itmo</groupId>
     <artifactId>untitled</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -23,7 +23,7 @@
         <profile>
             <id>service</id>
             <properties>
-                <module>org.example.test.helloosgiservice</module>
+                <module>org.itmo.kharisova.helloosgiservice</module>
             </properties>
             <build>
                 <plugins>
@@ -61,7 +61,7 @@
         <profile>
             <id>client</id>
             <properties>
-                <module>org.example.test.helloosgiclient</module>
+                <module>org.itmo.kharisova.helloosgiclient</module>
             </properties>
             <build>
                 <plugins>
@@ -82,7 +82,7 @@
                                     ${module}.Client
                                 </Bundle-Activator>
                                 <Import-Package>
-                                    org.example.test.helloosgiservice, org.osgi.framework, ${module}
+                                    org.itmo.kharisova.helloosgiservice, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>
                                     ${module}
