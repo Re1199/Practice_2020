@@ -40,7 +40,7 @@
         <profile>
             <id>service</id>
             <properties>
-                <module>org.example.test.helloosgiservice</module>
+                <module>org.kharisova.osgi.helloosgiservice</module>
             </properties>
             <build>
                 <plugins>
@@ -57,7 +57,6 @@
                                 </Bundle-SymbolicName>
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
-
                                 <Private-Package>
                                     ${module}.impl
                                 </Private-Package>
@@ -81,7 +80,7 @@
         <profile>
             <id>client</id>
             <properties>
-                <module>org.example.test.helloosgiclient</module>
+                <module>org.kharisova.osgi.helloosgiclient</module>
             </properties>
             <build>
                 <plugins>
@@ -99,9 +98,8 @@
                                 </Bundle-SymbolicName>
                                 <Bundle-Name>${project.name}.${module}</Bundle-Name>
                                 <Bundle-Version>${project.version}</Bundle-Version>
-
                                 <Import-Package>
-                                    org.example.test.helloosgiservice, org.osgi.framework, ${module}
+                                    org.kharisova.osgi.helloosgiservice, org.osgi.framework, ${module}
                                 </Import-Package>
                                 <Export-Package>
                                     ${module}

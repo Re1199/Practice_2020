@@ -1,4 +1,4 @@
-package org.example.test.helloosgiservice;
+package org.kharisova.osgi.helloosgiservice;
 
 public interface Greeting {
     void sayHello();
